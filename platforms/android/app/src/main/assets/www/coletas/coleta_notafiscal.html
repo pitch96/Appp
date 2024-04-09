@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width"/>
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src * data: gap: 'unsafe-inline' https://ssl.gstatic.com blob:; style-src 'self' 'unsafe-inline'; media-src *"/>
+
+
+    <link rel="stylesheet" type="text/css" href="../css/core.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/core-colors.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/core-icons.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/quagga.css"/>
+
+
+    <title>Coletar Nota fiscal</title>
+
+</head>
+
+<body>
+<div class="app">
+    <div class="header pos-absolute bg-purple">
+
+        <button id="btnVoltar" class="action-button mini bg-purple fg-white" data-role="ripple"><span
+                class="i-back i-2x"></span></button>
+        <span class="app-title"> Coletar por Nota Fiscal / O.S</span>
+
+    </div>
+    <ul class="header-present flex tabs deep bg-purple-700 fg-white" data-target="#tabs" data-deep="deep"
+        data-tabs-color="bg-purple-700" data-font-color="fg-white" data-role="tabs,ripple" data-ripple-target=".tab"
+        data-marker-color="bg-yellow">
+        <li class="tab" id="tab_dados" data-target="dados">Dados Coleta</li>
+        <li class="tab" id="tab_finalizacao" data-target="finalizacao">Registrar Coleta</li>
+    </ul>
+
+    <div class="view-content">
+        <form id='myform' enctype="multipart/form-data" method="POST">
+            <div id="tabs">
+                <div id="dados">
+                    <div class="grid-list">
+                        <div class="full-size row bg-amber">
+                            <div class="cell"><p class="subheading align-center">Passo 1: Aponte a camera para o codigo
+                                de barras da nota fiscal, ou Preencha os dados Manualmente</p></div>
+                        </div>
+
+                        <div class="row padding1">
+                            <div class="cell align-center">
+                                <div class="full-size input-control with-icon">
+                                    <input type="tel" name="nfe" maxlength="9" id="nfe" tabindex="1"
+                                           placeholder="Digite o Nº da NF-E / OS" required>
+                                    <span class="label">Número NF-E / OS:</span>
+                                    <span class="i-event_note icon"></span>
+                                    <hr>
+                                </div>
+                                <div class="full-size input-control with-icon">
+                                    <input type="tel" name="serie" maxLength="3" id="serie" tabindex="2"
+                                           placeholder="Digite a Série" required>
+                                    <span class="label">Série:</span>
+                                    <span class="i-event_note icon"></span>
+                                    <hr>
+                                </div>
+
+
+                                <h3 class="subheading fg-black align-left">Centro de expedição:</h3>
+                                <div class="full-size">
+
+                                    <select name="cnpj" id="cnpj" tabindex="3" class="full-size input-control" required>
+                                        <!--<option value="" disabled selected>Selecione o Centro</option>-->
+                                    </select>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                        <div class="row padding1">
+                            <div class="cell align-center"><button class="size0 raised-button bg-green fg-white" tabindex="4" onclick="  $('#tab_finalizacao').trigger('click');event.preventDefault();">Próxima Etapa</button></div>
+                        </div>
+
+                        <div class="row padding1 align-center fg-white">
+                            <div class="cell align-center">
+                                <div class="bg-purple align-center padding1" id="button_scanner">
+                                    <button class="margin2 action-button bg-red fg-white"
+                                            onclick="event.preventDefault();app.loadBarcode(); ">
+                                        <span class="i-running_tasks i-2x"></span></button>
+                                    <p class="subheading align-center fg-white"> Escanear Código de Barras</p></div>
+
+                            </div>
+                        </div>
+
+                        <div class="row padding5">
+                            <div class="cell align-center"></div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="finalizacao">
+                    <div class="grid-list">
+                        <div class="full-size row bg-amber">
+                            <div class="cell"><p class="subheading align-center">Passo 3: Colete a assinatura digitalizada e Registre a coleta</p></div>
+                        </div>
+
+                        <div class="row padding1">
+                            <div class="cell align-center">
+                                <div class="full-size input-control with-icon">
+                                    <input id="nome_responsavel" name="nome_responsavel" placeholder="Nome Responsável pela Coleta (opcional)"  />
+                                    <span class="label">Nome do Responsável:</span>
+                                    <span class="i-event_note icon"></span>
+                                    <hr>
+                                </div>
+                                <div class="full-size input-control with-icon">
+
+                                    <input id="rg_responsavel" name="rg_responsavel" placeholder="RG Responsável pela Coleta (opcional)"  />
+                                    <span class="label">RG do Responsável:</span>
+                                    <span class="i-event_note icon"></span>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row padding1 align-center fg-white">
+                            <div class="cell align-center">
+                                <div class="bg-purple align-center padding1" onclick="coreDialog.open('#dialogSignature');screen.orientation.lock('landscape');event.preventDefault();">
+                                    <button class="margin2 action-button bg-red fg-white" >
+                                        <span class="i-done i-2x"></span></button>
+                                    <p class="subheading align-center fg-white"> Coletar a Assinatura</p></div>
+                            </div>
+                        </div>
+
+
+                        <div class="row padding1">
+                            <div class="cell align-center">
+                                <button type="submit" class="size0 raised-button bg-green fg-white submitBtn" tabindex="4" onclick="">
+                                    Registrar Coleta
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="row padding1">
+                            <div class="cell align-center"><img id="signImg" /></div>
+                        </div>
+
+                        <div class="row padding5"><div class="cell align-center"></div></div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </form>
+
+
+
+
+
+        <div id="dialogProcessMessage" data-role="dialog" data-close-button="true" data-overlay="true" class="dialog full-width"  >
+            <div class="dialog-content align-center">
+                <div class="dialog-title"><span id="process-message-title"></span></div>
+                <div class="grid-list">
+                    <div class="row padding1">
+                        <div class="cell align-center">
+                            <div class="full-size">
+                                <img id="process-message"  />
+                                <span id="process-message-text"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dialog-actions">
+                <button class="flat-button place-left" onclick="coreDialog.close('#dialogProcessMessage')">Fechar</button>
+            </div>
+        </div>
+
+
+        <div id="dialogSignature" data-role="dialog" data-close-button="true" data-overlay="true" class="dialog full-width full-height" >
+            <div class="dialog-title">Coletar Assinatura
+                <button class="flat-button place-right" onclick="coreDialog.close('#dialogSignature');screen.orientation.lock('portrait');">Fechar</button></div>
+
+            <div class="dialog-content">
+                <div id="signature-pad" class="signature-pad">
+                    <div class="signature-pad--body align-center">
+                        <canvas id="padCanvas"  width='490' height='180' style='border: 1px solid black;' ></canvas>
+                    </div>
+                    <div class="signature-pad--footer">
+                        <div class="description align-center">Assinatura</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="dialog-actions">
+                <button class="flat-button place-left" onclick="signaturePad.clear();">Limpar</button>
+                <button class="raised-button bg-purple fg-white" onclick="coreDialog.close('#dialogSignature');screen.orientation.lock('portrait'); document.getElementById('signImg').src = signaturePad.toDataURL();">Salvar</button>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../cordova.js"></script>
+<script type="text/javascript" src="../js/util.js"></script>
+<script src="../js/webservice_access.js" type="text/javascript"></script>
+<script src="../js/signature_pad/signature_pad.js" type="text/javascript"></script>
+<script src="../js/coletas/coleta_webservice_access.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/coletas/coleta_notafiscal.js"></script>
+<script type="text/javascript" src="../js/core.min.js"></script>
+<script src="../js/quagga.js" type="text/javascript"></script>
+<script src="../js/live_w_locator.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/moment.js"></script>
+<script type="text/javascript">
+    app.initialize();
+</script>
+
+
+</body>
+
+</html>

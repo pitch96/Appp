@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src blob: * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src * data:; worker-src * data: blob:" />-->
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+     <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: 'unsafe-inline' https://ssl.gstatic.com blob:; style-src 'self' 'unsafe-inline'; media-src *" />
+
+
+    <link rel="stylesheet" type="text/css" href="css/core.css" />
+    <link rel="stylesheet" type="text/css" href="css/core-colors.min.css">
+    <link rel="stylesheet" type="text/css" href="css/core-icons.min.css">
+    <link rel="stylesheet" type="text/css" href="css/quagga.css" />
+
+
+	
+    <title>Comprovar Nota / O.S</title>
+
+</head>
+
+<body>
+   <div class="app">
+<div class="header pos-absolute bg-purple">
+
+		<button id="btnVoltar" class="action-button mini bg-purple fg-white" data-role="ripple" ><span class="i-back i-2x"></span></button>
+          <span class="app-title"> Comprovar Nota / O.S</span>
+
+        </div>
+       <ul class="header-present flex tabs deep bg-purple-700 fg-white" data-target="#tabs" data-deep="deep"
+           data-tabs-color="bg-purple-700" data-font-color="fg-white" data-role="tabs,ripple" data-ripple-target=".tab" data-marker-color="bg-yellow">
+           <li class="tab" id="tab_dados" data-target="dados">Dados</li>
+           <li class="tab" id="tab_foto_nota" data-target="foto_nota">Foto/Nota</li>
+           <li class="tab" id="tab_assinatura" data-target="assinatura">Assinatura</li>
+           <li class="tab"  id="tab_conferencia" data-target="conferencia">...</li>
+
+       </ul>
+
+        <div class="view-content">
+            <form id='myform' enctype="multipart/form-data" method="POST">
+                <div id="tabs">
+                <div id="dados" >
+                    <div class="grid-list">
+                        <div class="full-size row bg-amber">
+                            <div class="cell"><p class="subheading align-center">Passo 1: Aponte a camera para o codigo de barras da nota fiscal, ou Preencha os dados Manualmente</p></div>
+                        </div>
+
+
+
+                        <div class="row padding1">
+                            <div class="cell align-center">
+                                <div class="full-size input-control with-icon">
+                                    <input type="tel" name="nfe" maxlength="9"  id="nfe" tabindex="1"  placeholder="Digite o Nº da NF-E / OS">
+                                    <span class="label">Número NF-E:</span>
+                                    <span class="i-event_note icon"></span>
+                                    <hr>
+                                </div>
+                                <div class="full-size input-control with-icon">
+                                    <input type="tel" name="serie" maxLength="3" id="serie" tabindex="2" placeholder="Digite a Série">
+                                    <span class="label">Série:</span>
+                                    <span class="i-event_note icon"></span>
+                                    <hr>
+                                </div>
+
+
+                                <h3 class="subheading fg-black align-left">Centro de expedição:</h3>
+                                <div class="full-size">
+
+                                    <select name="cnpj" id="cnpj" tabindex="3" class="full-size input-control">
+                                        <!--<option value="" disabled selected>Selecione o Centro</option>-->
+                                    </select>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                        <div class="row padding1">
+                            <div class="cell align-center"><button class="size0 raised-button bg-green fg-white" tabindex="4" onclick="  $('#tab_foto_nota').trigger('click');event.preventDefault();">Próxima Etapa</button></div>
+                        </div>
+
+                        <div class="row padding1 align-center fg-white">
+                            <div class="cell align-center">
+                                <div class="bg-purple align-center padding1" id="button_scanner" >
+                                    <button class="margin2 action-button bg-red fg-white"   onclick="event.preventDefault();coreDialog.open('#dialogScanner');screen.orientation.lock('landscape');document.barcodeScanner.init(); ">
+                                        <span class="i-running_tasks i-2x"></span></button>
+                                    <p class="subheading align-center fg-white"> Escanear Código de Barras</p></div>
+
+                            </div>
+                        </div>
+
+                        <div class="row padding5"><div class="cell align-center"></div></div>
+
+                    </div>
+                </div>
+                <div id="foto_nota">
+                    <div class="grid-list">
+                        <div class="full-size row bg-amber">
+                            <div class="cell"><p class="subheading align-center">Passo 2:  Tire uma foto do comprovante de entrega</p></div>
+                        </div>
+
+
+                        <div class="row padding1 align-center fg-white">
+                            <div class="cell align-center">
+                                <div class="bg-purple align-center padding1" onclick="getPicture();event.preventDefault();">
+                                    <button class="margin2 action-button bg-red fg-white" >
+                                        <span class="i-photo_add i-2x"></span></button>
+                                    <p class="subheading align-center fg-white"> Tirar Foto do Comprovante</p></div>
+                            </div>
+                        </div>
+
+                        <div class="row padding1 align-center fg-white">
+                            <div class="cell align-center">
+                                <div class="bg-purple align-center padding1">
+                                    <label for="add_picture" class="margin2 action-button bg-red fg-white" style="line-height:1.9;">
+                                        <span class="i-file_upload i-2x"></span></label>
+                                    <input style="display: none;" type="file" id="add_picture" name="add_picture" accept="image/*">
+                                    <p class="subheading align-center fg-white"> Selecionar do Arquivo</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="image_div"></div>
+
+
+
+                        <div class="row padding1">
+                            <div class="cell align-center"><button class="size0 raised-button bg-green fg-white" onclick="$('#tab_assinatura').trigger('click');event.preventDefault();">Próxima Etapa</button></div>
+                        </div>
+
+                        <div class="row padding5"><div class="cell align-center"></div></div>
+
+
+
+                    </div>
+
+
+
+                </div>
+
+                    <div id="assinatura" >
+                        <div class="grid-list">
+                            <div class="full-size row bg-amber">
+                                <div class="cell"><p class="subheading align-center">Passo 3: Colete a assinatura digitalizada</p></div>
+                            </div>
+
+                            <div class="row padding1">
+                                <div class="cell align-center">
+                                    <div class="full-size input-control with-icon">
+                                        <input id="nome_recebedor" name="nome_recebedor" placeholder="Nome do Recebedor"  />
+                                        <span class="label">Nome do Recebedor:</span>
+                                        <span class="i-event_note icon"></span>
+                                        <hr>
+                                    </div>
+                                    <div class="full-size input-control with-icon">
+
+                                        <input id="rg_recebedor" name="rg_recebedor" placeholder="RG do Recebedor"  />
+                                        <span class="label">RG do Recebedor:</span>
+                                        <span class="i-event_note icon"></span>
+                                        <hr>
+                                    </div>
+                                    <div class="full-size">
+                                        <h3 class="subheading align-left fg-gray">Tipo Relação Recebedor:</h3>
+                                        <div class="full-size">
+                                            <select name="tipo_relacao_recebedor" id="tipo_relacao_recebedor" tabindex="3" class="full-size input-control"></select>
+                                        </div>
+                                        <hr>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+                            <div class="row padding1 align-center fg-white">
+                                <div class="cell align-center">
+                                    <div class="bg-purple align-center padding1" onclick="coreDialog.open('#dialogSignature');screen.orientation.lock('landscape');event.preventDefault();">
+                                        <button class="margin2 action-button bg-red fg-white" >
+                                            <span class="i-done i-2x"></span></button>
+                                        <p class="subheading align-center fg-white"> Coletar a Assinatura</p></div>
+                                </div>
+                            </div>
+
+                            <div class="row padding1">
+                                <div class="cell align-center"><img id="signImg" /></div>
+                            </div>
+
+                            <div class="row padding1">
+                                <div class="cell align-center"><button class="size0 raised-button bg-green fg-white" onclick="$('#tab_conferencia').trigger('click');event.preventDefault();">Próxima Etapa</button></div>
+                            </div>
+
+                            <div class="row padding5"><div class="cell align-center"></div></div>
+                        </div>
+                    </div>
+
+                <div id="conferencia" >
+                    <div class="grid-list">
+                        <div class="full-size row bg-amber">
+                            <div class="cell"><p class="subheading align-center">Passo 4: Confira os Dados e faça o Envio</p></div>
+                        </div>
+
+                        <div class="row padding1 align-center fg-white">
+                            <div class="cell align-center">
+
+                                <h3 class="subheading fg-black align-left">Observações:</h3>
+                                <div class="full-size">
+                                    <textarea id="observacoes" name="observacoes" placeholder="Escreva suas observações aqui:" style="height: 100px;" class="full-size input-control shadow-1"  rows="500" cols="100"></textarea>
+                                </div>
+
+                                <h3 class="subheading fg-black align-left">Status Transporte:</h3>
+                                <div class="full-size">
+                                    <select name="status_transporte" id="status_transporte" tabindex="3" class="full-size input-control" required></select>
+                                </div>
+                                <div class="progress"></div>
+                            </div>
+
+
+
+                        </div>
+
+
+                        <div class="row padding1 align-center fg-white">
+                            <div class="cell align-center">
+                                <div class="bg-purple align-center padding1  bottom-shadow">
+                                    <button class="margin2 action-button bg-green fg-white submitBtn" >
+                                        <span class="i-send i-2x"></span></button>
+                                    <p class="subheading align-center fg-white"> Enviar Dados</p></div>
+                            </div>
+                        </div>
+
+                        <div class="row padding1">
+                            <div class="cell align-center"><div class="statusMsg"></div></div>
+                        </div>
+                        <div class="row padding5"><div class="cell align-center"></div></div>
+                    </div>
+                </div>
+            </div>
+
+
+            </form>
+
+            <div id="dialogScanner" data-role="dialog" data-close-button="true" data-overlay="true" class="dialog full-width full-height" >
+
+                <div class="dialog-content align-center"  >
+
+                    <div id="interactive" class="viewport"><video  autoplay="true" preload="auto" src=""></video></div>
+                </div>
+                <div class="dialog-actions">
+                    <button class="flat-button" onclick="closeScanner();">Fechar</button>
+                </div>
+            </div>
+
+            <div id="dialogSignature" data-role="dialog" data-close-button="true" data-overlay="true" class="dialog full-width full-height" >
+                <div class="dialog-title">Coletar Assinatura
+                    <button class="flat-button place-right" onclick="coreDialog.close('#dialogSignature');screen.orientation.lock('portrait');">Fechar</button></div>
+
+                <div class="dialog-content">
+                    <div id="signature-pad" class="signature-pad">
+                        <div class="signature-pad--body align-center">
+                            <canvas id="padCanvas"  width='490' height='180' style='border: 1px solid black;' ></canvas>
+                        </div>
+                        <div class="signature-pad--footer">
+                            <div class="description align-center">Assinatura</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="dialog-actions">
+                    <button class="flat-button place-left" onclick="signaturePad.clear();">Limpar</button>
+                    <button class="raised-button bg-purple fg-white" onclick="coreDialog.close('#dialogSignature');screen.orientation.lock('portrait'); document.getElementById('signImg').src = signaturePad.toDataURL();">Salvar</button>
+                </div>
+            </div>
+
+
+
+
+        </div>
+	</div>
+
+	
+   <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+   <script type="text/javascript" src="cordova.js"></script>
+   <script type="text/javascript" src="js/util.js"></script>
+   <script src="js/webservice_access.js" type="text/javascript"></script>
+   <script type="text/javascript" src="js/comprovar_nota.js"></script>
+   <script type="text/javascript" src="js/core.min.js"></script>
+   <script src="js/quagga.js" type="text/javascript"></script>
+   <script src="js/live_w_locator.js" type="text/javascript"></script>
+   <script src="js/signature_pad/signature_pad.js" type="text/javascript"></script>
+   <script type="text/javascript" src="js/moment.js"></script>
+   <script src="js/moment-timezone.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+
+
+
+
+</body>
+
+</html>

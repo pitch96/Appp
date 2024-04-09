@@ -1,0 +1,43 @@
+{
+  "_from": "git+https://github.com/mWater/cordova-plugin-wezka-nativecamera.git",
+  "_id": "cordova-plugin-wezka-nativecamera@1.1.0",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/cordova-plugin-wezka-nativecamera",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "https://github.com/mWater/cordova-plugin-wezka-nativecamera.git",
+    "rawSpec": "https://github.com/mWater/cordova-plugin-wezka-nativecamera.git",
+    "saveSpec": "git+https://github.com/mWater/cordova-plugin-wezka-nativecamera.git",
+    "fetchSpec": "https://github.com/mWater/cordova-plugin-wezka-nativecamera.git",
+    "gitCommittish": null
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "git+https://github.com/mWater/cordova-plugin-wezka-nativecamera.git#0e0acf4ad6f2457e1b442be85a0aea65ad3fa791",
+  "_spec": "https://github.com/mWater/cordova-plugin-wezka-nativecamera.git",
+  "_where": "/Users/shadow/Documents/Workspace/FCMUpdate/Projeto Original",
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/broncha/cordova-plugin-wezka-nativecamera/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "platforms": [
+      "android"
+    ]
+  },
+  "deprecated": false,
+  "description": "com.wezka.nativecamera ==========================",
+  "homepage": "https://github.com/broncha/cordova-plugin-wezka-nativecamera#readme",
+  "license": "ISC",
+  "name": "cordova-plugin-wezka-nativecamera",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/broncha/cordova-plugin-wezka-nativecamera.git"
+  },
+  "version": "1.1.0"
+}

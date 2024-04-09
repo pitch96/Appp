@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <link rel="stylesheet" type="text/css" href="assets/mobileui/style.css">
+	  <link rel="stylesheet" type="text/css" href="assets/bootstrap/bootstrap.min.css" />
+	  <link rel="stylesheet" type="text/css" href="css/core.css" />
+    <link rel="stylesheet" type="text/css" href="css/core-colors.min.css">
+    <link rel="stylesheet" type="text/css" href="css/core-icons.min.css">
+    <link rel="stylesheet" href="css/fontawesome/css/all.css">
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <style>
+      div.appwrapper { overflow: hidden; width: inherit; }
+    </style>
+
+
+    <title>Tela Inicialização</title>
+</head>
+
+<body>
+  <div class="appwrapper">
+    <div class="right-shadow" data-role="sidebar" data-duration="10" data-toggle="#sbt1" id='#sidebar' onclick="$(this).toggleClass('active')">
+      <div class="sidebar-header">
+          <div class="">
+              <img src="img/logo.png" class="ani-logo padding1">
+          </div>
+          <span class="title fg-black">Portal do Transportadores</span>
+          <span class="subtitle fg-black"> 2018 ©</span>
+      </div>
+    
+      <ul class="sidebar-menu" data-role="ripple" data-ripple-target="li" data-ripple-color="#448aff">
+         <!-- <li><a><span class="i-library heading"> Histórico de Envio</a></li>-->
+          <li style=""><a id="alocaja"><span class="i-globe heading"> Viagens Dinâmicas</span></a></li>
+          <li style=""><a id="alocaJaHistorico"><span class="i-globe heading"> Minhas Viagens</span></a></li>
+
+          <li><a id="logout"><span class="i-library heading"> Sair</span></a></li>
+      </ul>
+  
+  </div>
+    <div class="row purple-300" style="height: 20px;" ></div>
+    <div class="item purple-300" style="height: 70px;"   >
+      <div class="right" style="padding-right: 10px;" >
+        <div style="z-index: 1500;" id="sbt1" >
+          <img alt='avatar' class="avatar circle" data-role="ripple"  src="img/driver2.png" width="50" height="50">
+        </div>
+    </div>
+      <div style="margin-left: 8px;">
+          <p style="font-size: 24px;"><strong>Bem-vindo </strong><strong id="usuario"></strong></p>
+      </div>
+    </div>
+    <div class="row grey-400" style="height: 0.5px;"></div>
+    <div class='row purple-300' style="height: 10px;"></div>
+    <div class="row purple-300">
+      <div class="col" style="text-align: center;">
+        <div>
+            <p style="font-size: 12px;"> <strong> Entregas pendentes: </strong></p>
+        </div>
+        <div>
+          <p id="entregas" style="font-size: 20px; margin-top: -10px;"><strong>12</strong></p>
+        </div>
+      </div>
+      <div class="col" style="text-align: center;">
+        <div>
+            <p style="font-size: 12px;"> <strong> Agendamentos pendentes: </strong></p>
+        </div>
+        <div>
+          <p id="agendamentos" style="font-size: 20px; margin-top: -10px;"><strong>25</strong></p>
+        </div>
+      </div>
+      <div class="col" style="text-align: center; padding-top: 14px;">
+        <img id="btnTransporteAgendado" src="img/ver.png" width="40px" height="40px">
+      </div>
+    </div>
+    <div class="row grey-400" style="height: 0.5px;"></div>
+    <div class='row purple-300' style="height: 10px;"></div>
+    <div class="swiper-container purple-200">
+      <div class="swiper-wrapper">
+          <!-- Add slide 1 -->
+          <div class="swiper-slide vertical-align-center white" style="border-radius: 10px; height: 120px; width: 200px;">
+            <div class="purple-400" style="border-radius: 8px; padding-left: 40px; padding-right: 40px;">
+              <p style="color: white; margin-top: 10px;"> Entregas Finalizadas</p>
+              <p id="finalizadaDate" style="color:white; margin-top: -20px;">2020-02-21</p>
+            </div>
+            <p id="finalizadas" style="margin-top: 5px; padding-bottom: 0px;">12</p>
+          </div>
+          <!-- Add slide 2 -->
+          <div class="swiper-slide vertical-align-center white" style="border-radius: 10px; height: 120px; width: 200px;">
+            <div class="purple-300" style="border-radius: 8px; padding-left: 40px; padding-right: 40px;">
+              <p style="color: white; margin-top: 10px;">Entregas Finalizadas</p>
+              <p id="finalizadaDate1" style="color:white; margin-top: -20px;">2020-02-22</p>
+            </div>
+            <p id="finalizadas1" style="margin-top: 5px; padding-bottom: 0px;">13</p>
+          </div>
+          <!-- Add slide 3 -->
+          <div class="swiper-slide vertical-align-center white" style="border-radius: 10px; height: 120px; width: 200px;">
+            <div class="purple-300" style="border-radius: 8px; padding-left: 40px; padding-right: 40px;">
+              <p style="color: white; margin-top: 10px;">Entregas Finalizadas</p>
+              <p id="finalizadaDate2" style="color:white; margin-top: -20px;">2020-02-23</p>
+            </div>
+            <p id="finalizadas2" style="margin-top: 5px; padding-bottom: 0px;">14</p>
+          </div>
+  
+      </div>
+      <!-- Add Pagination -->
+      <div class="swiper-pagination swiper-pagination-white" style="height: 0px;"></div>
+    </div>
+    <div class='row purple-300' style="height: 10px;"></div>
+    <div class='row' style="height: 10px;"></div>
+    <div class="row" style="width: 100%; text-align: center; margin-left: 10%;">
+     <!-- <div  id="btnNotasIniciadas" class="border-grey-400 shadow radius white vertical-align-center" style="width: 80%; padding-top:8px; padding-bottom: 8px;"> -->
+        <div  id="btnNotasIniciadas" class="green-100" style="width: 80%; padding-top:8px; padding-bottom: 8px;">
+  
+  
+            <span><span style="font-size: 13px;"> <strong> VER NOTAS/O.S EM ANDAMENTO </strong></span>
+          <!--  <img  src="img/a2.png" width="40" height="20"></span> -->
+          <img  src="img/shipment.png" width="40" height="20"></span>
+        <!-- <p style="margin-top: -18px; font-size: 10px;">Change will take up to 5 min/es</p> -->
+      </div>
+    </div>
+    <div class='row' style="height: 10px;"></div>
+    <div class="row padding1 text-center align-center" style="margin-left: 1px; width: 98%;"  style="text-align: center;">
+      <div class="col" style="text-align: center;">
+        <div id="btnRealizarColeta" class="purple-400 padding1" style="border: 1px solid white; height: 140px;   width: 102px;  border-radius: 5px;">
+          <p style="font-size: 14px; margin-left: 6px; margin-right: 6px;"> <strong> Realizar Coleta </strong></p>
+            <!--     <img  src="img/a1.png" width="60" height="30"> -->
+            <img  src="img/delivery_package2.png" width="50" height="28">
+             </div>
+           </div>
+           <div class="col" style="text-align: center;">
+             <div id="btnTransporteAgendado1" class="green-100 padding1"  style="border: 1px solid white; height: 140px;  width: 102px; border-radius: 5px;">
+               <p style="font-size: 14px;"> <strong> Iniciar Transporte </strong></p>
+               <!--  <img  src="img/agenda.png" width="40" height="30"> -->
+                 <img  src="img/delivery-truck.png" width="51" height="33">
+         </div>
+       </div>
+       <div class="col" style="text-align: center;">
+         <div id="btnComprovarNota" class="purple-400 padding1" style="border: 1px solid white; height: 140px;  width: 102px;  border-radius: 5px;">
+           <p style="font-size: 14px;"> <strong> Comprovar Nota/O.S Manual </strong></p>
+             <!--  <img  src="img/a3.png" width="60" height="30"> -->
+              <img  src="img/camera2.png" width="40" height="30">
+          </div>
+        </div>
+
+
+
+      </div>
+      <div class='row' style="height: 6px;"></div>
+      <!-- <div class="blue-grey-900" style="width: 200px; height: 200px;"> -->
+      <div id="progressUserKM" style="width: 160px; height: 160px;"></div>
+    <!-- </div> -->
+  
+    <!-- BOTAO de ALTERACAO DE PERFIL
+  
+    <div class='row' style="height: 6px;"></div>
+  
+     <div class="row">
+       <div class="purple-400 vertical-align-center" style="margin-top: -60px; text-align: center; width: 90%; margin-left: 5%; padding-top: 4px; padding-bottom: 4px; height: 50px;">
+         <p style="color: white; font-size: 18px; margin-top: 6px;">Alterar foto do perfil</p>
+       </div>
+    </div> -->
+  
+  
+    <!-- <div class='row' style="height: 6px;"></div>
+  
+    <div class="row">
+        <div class="purple-300 vertical-align-center" style="margin-top: -60px; text-align: center; width: 90%; margin-left: 5%; padding-top: 4px; padding-bottom: 4px; height: 50px;">
+            <p style="color: white; font-size: 18px; margin-top: 6px;"> Solicitar ajuda </p>
+            <img  src="img/callcenter.png" width="40" height="30">
+        </div>
+    </div> -->
+  
+  
+    <div class="row margin-top1" style="width: 100%; text-align: center; margin-left: 10%;">
+        <div  id="btnEmitirCTE" class="border-grey-400 shadow radius purple-300 vertical-align-center" style="width: 80%; padding-top:8px; padding-bottom: 12px;">
+         <span style="font-size: 15px;"> <strong> Emitir CTE   </strong></span>
+                 <span  class="fa-2x fa fa-file-pdf fg-white margin-left1"></span>
+
+        </div>
+
+  
+  
+    <div class="formDataShow"></div>
+    </div>
+    
+   
+    
+    
+      <script type="text/javascript" src="cordova.js"></script>
+      <script type="text/javascript" src="lib/framework7/js/framework7.js"></script>
+      <script type="text/javascript" src="assets/mobileui/mobileui.js"></script>
+      <script type="text/javascript" src="assets/bootstrap/bootstrap.min.js"></script>
+      <script type="text/javascript" src="js/core.min.js"></script>
+      <script type="text/javascript" src="js/moment.js"></script>
+      <script type="text/javascript" src="js/util.js"></script>
+      <script type="text/javascript" src="js/webservice_access.js"></script>
+      <script type="text/javascript" src="js/index.js"></script>
+      <script type="text/javascript">
+          $(function() {
+              app.initialize();
+              $("#sbt1").touch( {
+                  swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+                  alert("You swiped " + direction);
+                  }
+              });
+  
+              $("#logout").on('click', function(e) {
+                  window.localStorage.setItem("is_logged", 'false');
+                  window.location = 'login.html';
+              });
+  
+          });
+  
+      </script>
+      <script type="text/javascript">
+        new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            paginationClickable: true
+        });
+      </script>
+
+</body>
+
+</html>

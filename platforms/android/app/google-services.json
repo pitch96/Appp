@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "237492957724",
+    "project_id": "portalapp-firebase",
+    "storage_bucket": "portalapp-firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:237492957724:android:218315176857a3d59725d9",
+        "android_client_info": {
+          "package_name": "dev.portaldotransportador.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "237492957724-n0th3jlpude2m5m4rj1iv449pprnb9qm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dev.portaldotransportador.app",
+            "certificate_hash": "10d62060b240f70dd51a1acbda0fc904e228c11d"
+          }
+        },
+        {
+          "client_id": "237492957724-7kujlm75tfmdg7hm2ldjle939uig0vt8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBu9AH5DKM2YZ5OKVuy96i3xzoJMvaYhX8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "237492957724-7kujlm75tfmdg7hm2ldjle939uig0vt8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

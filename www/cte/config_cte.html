@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src blob: * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src * data:; worker-src * data: blob:" />-->
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+     <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: 'unsafe-inline' https://ssl.gstatic.com blob:; style-src 'self' 'unsafe-inline'; media-src *" />
+
+
+    <link rel="stylesheet" type="text/css" href="../../../../portal_transportador_app_cordova/www/css/core.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../portal_transportador_app_cordova/www/css/core-colors.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../../portal_transportador_app_cordova/www/css/core-icons.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../../portal_transportador_app_cordova/www/css/quagga.css" />
+	
+	
+    <title>Configurações CTE</title>
+
+
+    <style>
+        .hr_cert {
+            border: none;
+            width: 90%;
+            margin-top: -50px;
+            border-bottom: 1px solid #39bac4;
+            box-shadow: 0 20px 20px -20px rgba(0,0,0,.5);
+            margin: -20px auto 10px;
+        }
+
+        .dados-label {
+            display: block;
+            margin-bottom: .5rem;
+        }
+
+    </style>
+
+</head>
+
+<body>
+   <div class="app">
+<div class="header pos-absolute bg-purple">
+
+		<button id="btnVoltar" class="action-button mini bg-purple fg-white" data-role="ripple" ><span class="i-back i-2x"></span></button>
+          <span class="app-title"> Configurações CTE</span>
+
+        </div>
+       <ul class="header-present flex tabs deep bg-purple-700 fg-white" data-target="#tabs" data-deep="deep"
+           data-tabs-color="bg-purple-700" data-font-color="fg-white" data-role="tabs,ripple" data-ripple-target=".tab" data-marker-color="bg-yellow">
+           <li class="tab" id="tab_dados_nfe" data-target="dados_nfe">Dados</li>
+       </ul>
+
+        <div class="view-content">
+            <form id='myform' enctype="multipart/form-data" method="POST">
+                <div id="tabs" style="display: none;">
+                <div id="dados_nfe" >
+                    <div class="grid-list">
+
+                        <!--------Emitente-------->
+                        <div class="row padding1">
+                            <div class="cell"><p class="display5 fg-orange align-left">Dados Emitente</p></div>
+                        </div>
+                        <hr class="hr_cert">
+                        <div class="row padding1">
+                            <div class="cell align-left">
+                                <div class="row padding1">
+                                    <div class="cell align-left">
+                                        <label class="dados-label"><strong>RAZÃO SOCIAL:</strong> <span id="razao_social"></span></label>
+                                        <label class="dados-label"><strong>NOME FANTASIA:</strong> <span id="nome_fantasia"></span></label>
+                                        <label class="dados-label"><strong>CNPJ:</strong> <span id="cnpj"></span></label>
+                                        <label class="dados-label"><strong>INSCRIÇÃO ESTADUAL:</strong> <span id="inscricao_estadual"></span></label>
+                                        <label class="dados-label"><strong>UF:</strong> <span id="uf"></span></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--------Emitente-------->
+
+                        <!--------Dados Certificado-------->
+                        <div class="row padding1">
+                            <div class="cell"><p class="display5 fg-orange align-left">Dados Certificado</p></div>
+                        </div>
+                        <hr class="hr_cert">
+                        <div class="row padding1">
+                            <div class="cell align-left">
+                                <div class="row padding1">
+                                    <div class="cell align-left">
+                                        <label class="dados-label"><strong>NOME:</strong> <span id="nome_certificado"></span></label>
+                                        <label class="dados-label"><strong>TIPO:</strong> <span id="tipo_certificado"></span></label>
+                                        <label class="dados-label"><strong>VALIDADE:</strong> <span id="validade_certificado"></span></label>
+                                        <label class="dados-label"><strong>TOKEN:</strong> <span id="token_certificado"></span></label>
+                                        <label class="dados-label"><strong>SEFAZ STATUS:</strong> <span id="status_sefaz"></span></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--------Dados Certificado-------->
+
+                        <!--------Aliquotas-------->
+                        <div class="row padding1">
+                            <div class="cell"><p class="display5 fg-orange align-left">Aliquotas</p></div>
+                        </div>
+                        <hr class="hr_cert">
+                        <div class="row padding1">
+                            <div class="cell align-left">
+                                <div class="row padding1">
+                                    <div class="cell align-left">
+                                        <label class="dados-label"><strong>PIS:</strong> <span id="pis"></span></label>
+                                        <label class="dados-label"><strong>COFINS:</strong> <span id="cofins"></span></label>
+                                        <label class="dados-label"><strong>ICMS:</strong> <span id="icms"></span></label>
+                                        <label class="dados-label"><strong>Simples Nacional:</strong> <span id="simples"></span></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--------Aliquotas-------->
+
+
+                        <!--------CFOP-------->
+                        <div class="row padding1">
+                            <div class="cell"><p class="display5 fg-orange align-left">CFOP</p></div>
+                        </div>
+                        <hr class="hr_cert">
+                        <div class="row padding1">
+                            <div class="cell align-left">
+                                <div class="row padding1">
+                                    <div class="cell align-left">
+                                        <label class="dados-label"><strong>CFOP (Padrão):</strong> <span id="CFOP"></span></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--------CFOP-------->
+
+                        <!--------CENTROS-------->
+                        <div class="row padding1">
+                            <div class="cell"><p class="display5 fg-orange align-left">Centros</p></div>
+                        </div>
+                        <hr class="hr_cert">
+                        <div class="row padding1">
+                            <div class="cell align-left">
+                                <div class="row padding1">
+                                    <div class="cell align-left">
+                                        <label class="dados-label"><strong>Centros de expedição:</strong></label>
+                                        <div class="full-size">
+                                            <select name="centros" id="centros"  class="full-size input-control"></select>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--------CENTROS-------->
+
+
+
+
+
+                        <!--------Numeração CTE-------->
+                        <div class="row padding1">
+                            <div class="cell"><p class="display5 fg-orange align-left">Numeração</p></div>
+                        </div>
+                        <hr class="hr_cert">
+                        <div class="row padding1">
+                            <div class="cell align-left">
+                                <div class="row padding1">
+                                    <div class="cell align-left">
+                                        <label class="dados-label"><strong>Valor Inicial:</strong> <span id="numeracao_inicial"></span></label>
+                                        <label class="dados-label"><strong>Valor Final:</strong> <span id="numeracao_final"></span></label>
+                                        <label class="dados-label"><strong>Sequencial:</strong> <span id="numeracao_sequencial"></span></label>
+                                        <label class="dados-label"><strong>Série:</strong> <span id="numeracao_serie"></span></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--------Numeração CTE-------->
+
+
+
+                        <div class="row padding5"><div class="cell align-center"></div></div>
+                    </div>
+                </div>
+            </div>
+            </form>
+
+
+
+
+        </div>
+	</div>
+
+	
+	 <script type="text/javascript" src="../../../../portal_transportador_app_cordova/www/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../cordova.js"></script>
+   <script type="text/javascript" src="../../../../portal_transportador_app_cordova/www/js/util.js"></script>
+   <script src="../../../../portal_transportador_app_cordova/www/js/cte/cte_webservice_access.js" type="text/javascript"></script>
+	<script type="text/javascript" src="../../../../portal_transportador_app_cordova/www/js/cte/config_cte.js"></script>
+    <script type="text/javascript" src="../../../../portal_transportador_app_cordova/www/js/core.min.js"></script>
+   <script type="text/javascript" src="../js/cte/cte_configs.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+
+
+
+
+</body>
+
+</html>

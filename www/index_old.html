@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+
+	   <link rel="stylesheet" type="text/css" href="css/core.css" />
+    <link rel="stylesheet" type="text/css" href="css/core-colors.min.css">
+    <link rel="stylesheet" type="text/css" href="css/core-icons.min.css">
+	
+	
+    <title>Tela Inicialização</title>
+</head>
+
+<body>
+   <div class="app">
+<div class="header bg-purple" >
+            <button class="nav-button" data-role="ripple" id="sbt1"><span></span></button>
+            <span class="app-title">Portal do Transportador</span> 
+			
+        </div>
+<div class="right-shadow" data-role="sidebar" data-duration="10" data-toggle="#sbt1" id='#sidebar' onclick="$(this).toggleClass('active')">
+    <div class="sidebar-header">
+        <div class="">
+            <img src="img/logo.png" class="ani-logo padding1">
+        </div>
+        <span class="title fg-black">Portal do Transportador</span>
+        <span class="subtitle fg-black"> 2018 ©</span>
+    </div>
+	
+    <ul class="sidebar-menu" data-role="ripple" data-ripple-target="li" data-ripple-color="#448aff">
+       <!-- <li><a><span class="i-library heading"> Histórico de Envio</a></li>
+        <li><a><span class="i-library heading"> Meus Dados</a></li>-->
+        <li><a id="logout"><span class="i-library heading"> Sair</a></li>
+    </ul>
+
+</div>
+
+
+
+        <div class="view-content">
+		
+            <div class="grid-list">
+                <div class="row padding1">
+                    <div class="cell"><p class="display1 align-center">Seja bem vindo <strong id="usuario"></strong></p></div>
+                </div>
+<!--
+                <div class="row padding1">
+                    <div class="cell align-center"><button id="btnCheckin" class="size0 raised-button bg-purple fg-white">Iniciar Entrega</button></div>
+                </div>-->
+
+                <div class="row padding1">
+                    <div class="cell align-center"><button id="btnNotasIniciadas" class="size0 raised-button bg-green fg-white">Notas em Trânsito</button></div>
+                </div>
+
+                <div class="row padding1">
+                    <div class="cell align-center"><button id="btnTransporteAgendado" class="size0 raised-button bg-purple fg-white">Transporte Agendado</button></div>
+                </div>
+
+                <div class="row padding1">
+                    <div class="cell align-center"><button id="btnComprovarNota" class="size0 raised-button bg-green fg-white">Comprovação Manual</button></div>
+                </div>
+                <div class="row padding1">
+                    <div class="cell align-center"><button id="btnRealizarColeta" class="size0 raised-button bg-purple fg-white">Realizar Coleta</button></div>
+                </div>
+
+
+
+		</div>
+
+
+			<!--	<div class="multi-action floating-action-bottom">
+				<button class="action-button bg-red fg-white" onclick="$(this).toggleClass('active')"><span class="i-add icon"></span></button>
+						<ul class="actions">
+							<li class="bg-blue"><a href="#"><span class="i-user_add"></span></a></li>
+							<li class="bg-teal"><a href="#"><span class="i-library"></span></a></li>
+							<li class="bg-pink"><a href="#"><span class="i-alarm"></span></a></li>
+							<li class="bg-orange"><a href="#"><span class="i-lock"></span></a></li>
+						</ul>
+				</div>-->
+
+        </div>
+	</div>
+	
+ 
+	
+	 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+   <script type="text/javascript" src="js/util.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/core.min.js"></script>
+   <script type="text/javascript" src="js/moment.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+ 
+ $(function() {
+
+    $("#sbt1").touch( {
+        swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+           alert("You swiped " + direction);
+        }
+    });
+
+     $("#logout").on('click', function(e) {
+         window.localStorage.setItem("is_logged", 'false');
+        window.location = 'login.html';
+     });
+
+});
+
+    </script>
+</body>
+
+</html>

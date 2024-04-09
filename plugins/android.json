@@ -1,0 +1,44 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "com.tmantman.nativecamera": {
+      "PACKAGE_NAME": "dev.portaldotransportador.app"
+    },
+    "cordova-plugin-android-permissions": {
+      "PACKAGE_NAME": "dev.portaldotransportador.app"
+    },
+    "cordova-plugin-background-mode": {
+      "PACKAGE_NAME": "dev.portaldotransportador.app"
+    },
+    "cordova-plugin-console": {
+      "PACKAGE_NAME": "dev.portaldotransportador.app"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "dev.portaldotransportador.app"
+    },
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "dev.portaldotransportador.app"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "dev.portaldotransportador.app"
+    }
+  },
+  "dependent_plugins": {
+    "cordova-plugin-background-fetch": {
+      "PACKAGE_NAME": "dev.portaldotransportador.app"
+    },
+    "cordova-background-geolocation-lt": {
+      "GOOGLE_API_VERSION": "20.+",
+      "HMS_LOCATION_VERSION": "6.9.0.300",
+      "OKHTTP_VERSION": "3.12.+",
+      "EVENTBUS_VERSION": "3.3.1",
+      "PACKAGE_NAME": "dev.portaldotransportador.app"
+    }
+  }
+}

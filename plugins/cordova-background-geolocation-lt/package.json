@@ -1,0 +1,67 @@
+{
+  "name": "cordova-background-geolocation-lt",
+  "version": "4.16.0",
+  "description": "Cordova / Capacitor Background Geolocation.  The most sophisticated, cross-platform location-tracking and geofencing plugin with battery-conscious motion-detection intelligence.",
+  "cordova": {
+    "id": "cordova-background-geolocation-lt",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "main": "./src/ionic/index.js",
+  "types": "./src/ionic/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/transistorsoft/cordova-background-geolocation-lt"
+  },
+  "scripts": {
+    "build": "tsc -p src/ionic",
+    "prepublish": "npm run build"
+  },
+  "keywords": [
+    "gps",
+    "location",
+    "tracking",
+    "geolocation",
+    "geofencing",
+    "background",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova",
+    "capacitor",
+    "phonegap"
+  ],
+  "engines": {
+    "cordovaDependencies": {
+      "<2.9.0": {
+        "cordova": ">=6.4.0",
+        "cordova-android": ">=6.0.0",
+        "cordova-ios": ">=4.3.0"
+      },
+      "2.9.0": {
+        "cordova": ">=7.1.0",
+        "cordova-android": ">=6.3.0",
+        "cordova-ios": ">=4.4.0"
+      },
+      "2.12.0": {
+        "cordova": ">=7.1.0",
+        "cordova-android": ">=7.0.0",
+        "cordova-ios": ">=4.4.0"
+      }
+    }
+  },
+  "devDependencies": {
+    "@transistorsoft/typedoc-theme": "^2.0.9",
+    "chalk": "^4.1.0",
+    "fs-extra": "^9.1.0",
+    "rimraf": "^3.0.2"
+  },
+  "author": "Chris Scott, Transistor Software",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/transistorsoft/cordova-background-geolocation-lt/issues"
+  },
+  "homepage": "https://github.com/transistorsoft/cordova-background-geolocation-lt#README"
+}
